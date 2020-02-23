@@ -1,3 +1,8 @@
 from django.db import models
 
-# Create your models here.
+class Reminder(models.Model):
+    description = models.CharField(max_length=255)
+    remind_me_at = models.DateTimeField(auto_now_add=True)
+
+    def __str__(self):
+        return self.reminder
