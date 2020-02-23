@@ -8,7 +8,6 @@ class RemindersList extends Component {
   }
 
   render() {
-    console.log('propping... ', this.props);
     return (
       <div className='ui relaxed divided list' style={{ marginTop: '2rem' }}>
         {this.props.reminders.map(reminder => (
