@@ -9,7 +9,7 @@ export default class App extends Component {
   render() {
     return (
       <div>
-        <h1>Hiipocampus Reminders</h1>
+        <h1>Hippocampus Reminders</h1>
         <Provider store={store}>
           <Dashboard />
         </Provider>
