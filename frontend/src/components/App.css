@@ -1,0 +1,22 @@
+.container {
+  background: dimgrey;
+  padding: 2%;
+}
+
+.header {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  padding-bottom: 2%;
+}
+
+.title {
+  text-align: center;
+  color: mediumseagreen;
+  user-select: none;
+}
+
+.hippo {
+  font-size: 125px;
+  z-index: 1;
+}

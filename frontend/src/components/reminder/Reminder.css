@@ -1,0 +1,17 @@
+.reminder {
+  width: 80%;
+  background-color: mediumseagreen;
+}
+
+.counter {
+  text-align: right;
+  padding-right: 5%;
+}
+
+.ant-card-actions {
+  background: darkgrey;
+}
+
+.ant-col-6 {
+  flex: 0 0 20%;
+}
