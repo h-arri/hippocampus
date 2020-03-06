@@ -1,9 +1,9 @@
-import * as React from 'react';
+import React from 'react';
 import { Card, Statistic } from 'antd';
 import { NotificationFilled, EllipsisOutlined, LikeFilled } from '@ant-design/icons';
 import './Reminder.css';
 
-export class Reminder extends React.Component {
+export default class Reminder extends React.Component {
   constructor(props) {
     super(props);
     this.state = {

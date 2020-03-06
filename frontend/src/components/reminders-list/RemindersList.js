@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { getReminders } from '../../store/actions/reminders';
-import {Reminder} from '../reminder/Reminder';
+import Reminder from '../reminder/Reminder';
 import { Row, Col } from 'antd';
 import './RemindersList.css';
 
