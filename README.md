@@ -4,7 +4,7 @@ Built with love, using Pyhton Django, React, Redux,...
 
 ## Prerequisites
 
-Backend - install `pip3`, `python3` and 'djangoframework'
+Backend - install `pip3`, `python3` and `djangoframework`
 Frontend - run `npm i` to install the frontend dependencies
 
 ## Spin the application as follows
