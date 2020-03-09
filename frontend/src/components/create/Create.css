@@ -1,0 +1,145 @@
+.create {
+  width: 80%;
+  background-color: mediumseagreen;
+}
+
+.plus-icon {
+  font-size: 100px;
+}
+
+.ant-card-head-title {
+  display: flex;
+}
+
+.description {
+  display: flex;
+  justify-content: space-around;
+}
+
+.description:focus {
+  outline: none;
+}
+
+.ant-card-head {
+  border-color: rgba(0, 0, 0, 0.65);
+}
+
+.ant-typography-edit-content {
+  font-size: 50px;
+  width: 100%;
+}
+
+.anticon-edit {
+  color: rgba(0, 0, 0, 0.65);
+  margin-top: 20%;
+}
+
+.anticon-stop {
+  margin: -3px 10px 0 0;
+}
+
+.anticon-bell {
+  margin: -3px 0 0 10px;
+  float: right;
+}
+
+.anticon-user {
+  float: right;
+}
+
+.cancel {
+  display: flex;
+}
+
+.ant-card-actions > li > span {
+  display: flex;
+  justify-content: center;
+}
+
+.ant-card-actions > li > span > .anticon:hover {
+  color: rgba(0, 0, 0, 0.65);
+}
+
+.ant-picker-dropdown {
+  left: 210px !important;
+}
+
+.ant-btn {
+  background: none;
+  border: none;
+}
+
+.ant-btn:focus,
+.ant-btn:hover {
+  background: seagreen;
+  border-color: seagreen;
+  color: rgba(0, 0, 0, 0.65);
+}
+
+.ant-input,
+.ant-input:active,
+.ant-input:focus,
+.textarea.ant-input:focus {
+  border: none;
+  background-color: inherit;
+}
+
+.ant-typography-edit,
+.ant-typography-edit:focus,
+.ant-typography-edit:hover {
+  border: none !important;
+  background-color: inherit !important;
+  color: mediumseagreen;
+}
+
+div.ant-typography {
+  margin-bottom: 0em;
+}
+
+div.ant-typography-edit-content {
+  left: 0px;
+}
+
+.ant-picker-cell-in-view.ant-picker-cell-selected .ant-picker-cell-inner,
+.ant-picker-cell-inner:hover {
+  background: mediumseagreen !important;
+}
+
+.ant-picker-cell-in-view.ant-picker-cell-today .ant-picker-cell-inner::before {
+  border-color: mediumseagreen;
+}
+
+.ant-picker-today-btn,
+.ant-picker-today-btn:hover {
+  color: mediumseagreen;
+}
+
+.ant-picker-suffix,
+.ant-picker-input {
+  color: rgba(0, 0, 0, 0.65);
+}
+
+.ant-picker-input > input {
+  text-align: end;
+  margin-right: 2%;
+  color: rgba(0, 0, 0, 0.65);
+}
+
+.ant-picker-clear {
+  background: none;
+  top: 55%;
+  right: 185px;
+}
+
+.ant-card {
+  border-radius: 2%;
+}
+
+.ant-card-hoverable:hover {
+  margin-top: -5%;
+  width: 100%;
+}
+
+.ant-col-6 {
+  margin: 1%;
+}

@@ -1,7 +1,8 @@
-import React from 'react';
-import { Card, Statistic } from 'antd';
-import { NotificationFilled, EllipsisOutlined, LikeFilled } from '@ant-design/icons';
 import './Reminder.css';
+
+import { Card, Statistic } from 'antd';
+import { NotificationFilled, EllipsisOutlined, LikeFilled, UserOutlined } from '@ant-design/icons';
+import React from 'react';
 
 export default class Reminder extends React.Component {
   constructor(props) {
@@ -12,7 +13,7 @@ export default class Reminder extends React.Component {
   }
 
   render() {
-    const {reminder} = this.state;
+    const { reminder } = this.state;
     const counter = new Date(reminder.remind_me_at).getTime();
 
     return <Card
@@ -24,11 +25,16 @@ export default class Reminder extends React.Component {
               <EllipsisOutlined key="ellipsis" />,
             ]}
             hoverable
-            cover={<Statistic.Countdown className="counter" value={counter} format="HH:mm:ss" />}>
+            cover={<Statistic.Countdown title="in" className="counter" value={counter} format="HH:mm:ss" />}>
               <Card.Meta
                 title={reminder.description}
-                description={reminder.created_at}
-              />
+                description={new Intl.DateTimeFormat('de-DE', {
+                    year: 'numeric', month: 'numeric', day: 'numeric',
+                    hour: 'numeric', minute: 'numeric', second: 'numeric',
+                    hour12: false
+                  }).format(new Date(reminder.created_at))}
+                />
+                <UserOutlined />
         </Card>
   }
 }

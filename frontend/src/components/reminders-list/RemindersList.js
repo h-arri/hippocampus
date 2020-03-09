@@ -1,9 +1,12 @@
-import React, { Component } from 'react';
-import { connect } from 'react-redux';
-import { getReminders } from '../../store/actions/reminders';
-import Reminder from '../reminder/Reminder';
-import { Row, Col } from 'antd';
 import './RemindersList.css';
+
+import { Row, Col } from 'antd';
+import { connect } from 'react-redux';
+import React, { Component } from 'react';
+
+import { getReminders } from '../../store/actions/reminders';
+import Create from '../create/Create';
+import Reminder from '../reminder/Reminder';
 
 class RemindersList extends Component {
   componentDidMount() {
@@ -13,7 +16,8 @@ class RemindersList extends Component {
   render() {
     return (
       <Row gutter={[16, 16]} className="grid">
-        {this.props.reminders.map(reminder => (<Col className="col" span={6}><Reminder reminder={reminder}/></Col>))}
+        <Col className='col' span={6}><Create /></Col>
+        {this.props.reminders.map(reminder => (<Col key={reminder.id} className="col" span={6}><Reminder reminder={reminder}/></Col>))}
       </Row>
     );
   }
