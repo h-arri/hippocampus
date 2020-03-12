@@ -1,4 +1,5 @@
 import './App.css';
+import './ant-styles.css';
 
 import { Provider } from 'react-redux';
 import {Typography} from 'antd';
@@ -27,7 +28,6 @@ export default class App extends Component {
                 </svg>
             </p>
           </div>
-          <Typography.Title className='title'>Hippocampus</Typography.Title>
         </div>
         <Provider store={store}>
           <Dashboard />

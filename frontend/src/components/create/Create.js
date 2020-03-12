@@ -1,35 +1,37 @@
 import './Create.css';
 
 import { BellFilled, StopOutlined, UserOutlined } from '@ant-design/icons';
-import { Button, Card, DatePicker, Typography } from 'antd';
+import { Button, Card, DatePicker, Input } from 'antd';
 import React from 'react';
+import moment from 'moment';
 
 export default class Reminder extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
       id: 999999,
-      description: 'What should I remember?',
+      description: 'What should I remind?',
       extra: 'Extra notes?',
-      remind_me_at: '',
+      remind_at: '',
       created_at: new Intl.DateTimeFormat('de-DE', {
           year: 'numeric', month: 'numeric', day: 'numeric',
           hour: 'numeric', minute: 'numeric', second: 'numeric',
           hour12: false
-        }).format(Date.now())
+        }).format(Date.now()),
+        editMode: false
     };
   }
 
   handleDescChange = e => {
-    this.setState({ description: e });
+    this.setState({ description: e.target.value });
   }
 
   handleExtraChange = e => {
-    this.setState({ extra: e });
+    this.setState({ extra: e.targe });
   }
 
   handleDateChange = e => {
-    this.setState({ remind_me_at: e.toString() });
+    this.setState({ remind_at: e.toString() });
   }
 
   render() {
@@ -37,8 +39,7 @@ export default class Reminder extends React.Component {
     const counter = Date.now().getTime;
 
     return <Card
-            title={<Typography.Text className='description' ellipsis={true}
-            editable={{ onChange: this.handleDescChange }}>{description}</Typography.Text>}
+            title={<Input placeholder='What should be reminded?!' size='large' onChange={this.handleDescChange} />}
             className="create"
             actions={[
               <Button size='large' icon={<StopOutlined key='cancel' />} className='cancel'>Cancel</Button>,
@@ -46,13 +47,11 @@ export default class Reminder extends React.Component {
             ]}
             hoverable
             cover={<DatePicker bordered={false} format='DD.MM.YYYY HH:mm'
-                      showTime={{ defaultValue: Date.now()}}
+                      showTime={{ defaultValue:  moment('00:00:00', 'HH:mm:ss') }} size=''
                       onOk={this.handleDateChange}/>}>
                         <Card.Meta
-                          title={<Typography.Paragraph
-                          editable={{ onChange: this.handleExtraChange }}>{extra}</Typography.Paragraph>}
-                          />
-                  <UserOutlined />
+                          title={<Input.TextArea placeholder='Extra notes?' onChange={this.handleExtraChange} />}/>
+                  <UserOutlined style={{ color: 'mediumseagreen' }}/>
         </Card>
   }
 }

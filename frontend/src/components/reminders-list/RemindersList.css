@@ -1,4 +1,12 @@
 .col {
   display: flex;
   justify-content: center;
+  margin-left: -20px;
+  margin-right: -20px;
+}
+
+.grid {
+  justify-content: center;
+  margin-left: -65px !important;
+  margin-right: -65px !important;
 }
