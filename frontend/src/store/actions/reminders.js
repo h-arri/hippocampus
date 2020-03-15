@@ -1,18 +1,18 @@
-import axios from 'axios';
+import axios from "axios";
 
 import {
   GET_REMINDERS,
   GET_REMINDERS_FAILURE,
   GET_REMINDERS_SUCCESS
-} from '../types';
+} from "../types";
 
 export const getReminders = () => ({
   type: GET_REMINDERS
 });
 
 export const getRemindersSuccess = reminders => ({
-    type: GET_REMINDERS_SUCCESS,
-    reminders
+  type: GET_REMINDERS_SUCCESS,
+  reminders
 });
 
 export const getRemindersFailure = error => ({
@@ -23,7 +23,8 @@ export const getRemindersFailure = error => ({
 export function getRemindersAsync() {
   return dispatch => {
     dispatch(getReminders());
-    return axios.get('/api/reminders/')
+    return axios
+      .get("/api/reminders/")
       .then(({ data }) => {
         dispatch({
           type: GET_REMINDERS_SUCCESS,

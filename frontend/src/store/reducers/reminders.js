@@ -2,7 +2,7 @@ import {
   GET_REMINDERS,
   GET_REMINDERS_FAILURE,
   GET_REMINDERS_SUCCESS
-} from '../types';
+} from "../types";
 
 const initialState = {
   reminders: [],
