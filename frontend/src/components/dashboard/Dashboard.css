@@ -1,3 +1,18 @@
 .menu {
   margin: 1% 1%;
 }
+
+.container {
+  padding: 2%;
+  font-family: monospace;
+  overflow: hidden;
+}
+
+.header {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  padding: 2% 10% 0;
+  background: none;
+  height: 130px;
+}

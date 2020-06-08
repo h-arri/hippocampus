@@ -17,7 +17,7 @@
 }
 
 .anticon,
-.ant-card-actions > li > span > .anticon {
+.ant-card-actions>li>span>.anticon {
   font-size: 30px;
 }
 
@@ -73,17 +73,17 @@
   padding: 5% 2% 0 0;
 }
 
-.ant-card-actions > li > span {
+.ant-card-actions>li>span {
   display: flex;
   justify-content: center;
 }
 
-.ant-card-actions > li > span > .anticon:hover {
+.ant-card-actions>li>span>.anticon:hover {
   color: rgba(0, 0, 0, 0.65);
 }
 
 .ant-picker-dropdown {
-  left: 210px !important;
+  left: 770px !important;
 }
 
 .ant-btn {
@@ -141,7 +141,7 @@ div.ant-typography-edit-content {
   color: rgba(0, 0, 0, 0.65);
 }
 
-.ant-picker-input > input {
+.ant-picker-input>input {
   text-align: end;
   margin-right: 2%;
   color: rgba(0, 0, 0, 0.65);
@@ -171,6 +171,32 @@ div.ant-typography-edit-content {
   color: seagreen;
 }
 
-.ant-picker-input > input {
+.ant-picker-input>input {
   color: mediumseagreen;
+}
+
+.ant-modal,
+.ant-modal-body {
+  padding: 0;
+}
+
+.ant-modal {
+  border-radius: 10px;
+}
+
+.ant-picker-time-panel-column>li.ant-picker-time-panel-cell-selected>.ant-picker-time-panel-cell-inner {
+  background: seagreen;
+}
+
+.ant-input {
+  font-size: 25px;
+  color: seagreen;
+}
+
+.ant-input:placeholder-shown {
+  color: seagreen;
+}
+
+.ant-modal-content {
+  background: none;
 }

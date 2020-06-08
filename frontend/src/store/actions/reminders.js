@@ -1,10 +1,6 @@
 import axios from "axios";
+import { GET_REMINDERS, GET_REMINDERS_FAILURE, GET_REMINDERS_SUCCESS } from "../types";
 
-import {
-  GET_REMINDERS,
-  GET_REMINDERS_FAILURE,
-  GET_REMINDERS_SUCCESS
-} from "../types";
 
 export const getReminders = () => ({
   type: GET_REMINDERS
@@ -20,7 +16,7 @@ export const getRemindersFailure = error => ({
   error
 });
 
-export function getRemindersAsync() {
+export function getRemindersFromApi() {
   return dispatch => {
     dispatch(getReminders());
     return axios

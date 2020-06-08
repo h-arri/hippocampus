@@ -3,10 +3,10 @@
   background-color: mediumseagreen;
 }
 
-.reminder:hover {
+/* .reminder:hover {
   margin-top: -5%;
   width: 100%;
-}
+} */
 
 .reminder > div,
 .counter {

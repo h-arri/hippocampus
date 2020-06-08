@@ -1,16 +1,16 @@
+import { Button, Card, DatePicker, Input, Modal, Typography } from "antd";
+import moment from "moment";
+import React from "react";
 import "./Create.css";
 
-import { BellFilled, StopOutlined, UserOutlined } from "@ant-design/icons";
-import { Button, Card, DatePicker, Input } from "antd";
-import React from "react";
-import moment from "moment";
 
-export default class Reminder extends React.Component {
+export default class Create extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
+      open: false,
       id: 999999,
-      description: "What should I remind?",
+      description: "Description",
       extra: "Extra notes?",
       remind_at: "",
       created_at: new Intl.DateTimeFormat("de-DE", {
@@ -23,7 +23,15 @@ export default class Reminder extends React.Component {
         hour12: false
       }).format(Date.now()),
       editMode: false
-    };
+    }
+  }
+
+  handleOpen = () => {
+    this.setState({ open: true });
+  }
+
+  handleClose = () => {
+    this.setState({ open: false });
   }
 
   handleDescChange = e => {
@@ -31,7 +39,7 @@ export default class Reminder extends React.Component {
   };
 
   handleExtraChange = e => {
-    this.setState({ extra: e.targe });
+    this.setState({ extra: e.target.value });
   };
 
   handleDateChange = e => {
@@ -43,55 +51,65 @@ export default class Reminder extends React.Component {
   };
 
   render() {
-    const { description, extra, created_at } = this.state;
-    const counter = Date.now().getTime;
-
+    const { open } = this.state;
     return (
-      <Card
-        title={
-          <Input
-            placeholder="What should be reminded?!"
-            size="large"
-            onChange={this.handleDescChange}
-          />
-        }
-        className="create"
-        actions={[
-          <Button
-            size="large"
-            icon={<StopOutlined key="cancel" onClick={this.handleClick} />}
-            className="cancel"
+      <>
+        <Button type="primary" size="large" className="create-btn"
+          onClick={this.handleOpen}>
+          <Typography.Title>+</Typography.Title>
+        </Button>
+        <Modal
+          closable={false}
+          centered
+          visible={open}
+          className="create"
+          footer={null}
+        >
+          <Card
+            title={
+              <Input
+                placeholder="Description"
+                size="large"
+                onChange={this.handleDescChange}
+              />
+            }
+            className="create"
+            cover={
+              <DatePicker
+                bordered={false}
+                format="DD.MM.YYYY HH:mm"
+                showTime={{ defaultValue: moment("00:00:00", "HH:mm:ss") }}
+                size=""
+                onOk={this.handleDateChange}
+              />
+            }
+            actions={[
+              <Button
+                size="large"
+                className="cancel"
+                onClick={this.handleClose}
+              >
+                Cancel
+              </Button>,
+              <Button
+                size="large"
+                onClick={this.handleClick}
+              >
+                Remind
+              </Button>
+            ]}
           >
-            Cancel
-          </Button>,
-          <Button
-            size="large"
-            icon={<BellFilled key="remind" onClick={this.handleClick} />}
-          >
-            Remind!
-          </Button>
-        ]}
-        hoverable
-        cover={
-          <DatePicker
-            bordered={false}
-            format="DD.MM.YYYY HH:mm"
-            showTime={{ defaultValue: moment("00:00:00", "HH:mm:ss") }}
-            size=""
-            onOk={this.handleDateChange}
-          />
-        }
-      >
-        <Card.Meta
-          title={
-            <Input.TextArea
-              placeholder="Extra notes?"
-              onChange={this.handleExtraChange}
+            <Card.Meta
+              title={
+                <Input.TextArea
+                  placeholder="Extra notes?"
+                  onChange={this.handleExtraChange}
+                />
+              }
             />
-          }
-        />
-        <UserOutlined style={{ color: "mediumseagreen" }} />
-      </Card>
+          </Card>
+        </Modal>
+      </>
     );
   }
 }

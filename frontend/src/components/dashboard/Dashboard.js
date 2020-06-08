@@ -1,25 +1,22 @@
-import "./Dashboard.css";
-
-import { Col, Row } from "antd";
+import { Layout } from 'antd';
 import React, { Component } from "react";
-
 import Create from "../create/Create";
 import RemindersList from "../reminders-list/RemindersList";
+import "./Dashboard.css";
+
 
 class Dashboard extends Component {
+
   render() {
-    return (
-      <div>
-        <Row className="menu">
-          <Col span={8}>
-            <Create />
-          </Col>
-        </Row>
-        <br />
-        <br />
+
+    return (<Layout className="container">
+      <Layout.Header className="header">
+        <Create />
+      </Layout.Header>
+      <Layout.Content>
         <RemindersList />
-      </div>
-    );
+      </Layout.Content>
+    </Layout>);
   }
 }
 

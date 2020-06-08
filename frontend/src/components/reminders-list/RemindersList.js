@@ -1,18 +1,18 @@
+import { Col, Row } from "antd";
+import React, { Component } from "react";
+import { connect } from "react-redux";
+import { getRemindersFromApi } from "../../store/actions/reminders";
+import Reminder from "../reminder/Reminder";
 import "./RemindersList.css";
 
-import { Row, Col } from "antd";
-import { connect } from "react-redux";
-import React, { Component } from "react";
-
-import { getRemindersAsync } from "../../store/actions/reminders";
-import Reminder from "../reminder/Reminder";
 
 class RemindersList extends Component {
   componentDidMount() {
-    this.props.getRemindersAsync();
+    this.props.getRemindersFromApi();
   }
 
   render() {
+
     return (
       <Row gutter={[8, 32]} className="grid">
         {this.props.reminders.map(reminder => (
@@ -31,4 +31,4 @@ const mapStateToProps = state => {
   };
 };
 
-export default connect(mapStateToProps, { getRemindersAsync })(RemindersList);
+export default connect(mapStateToProps, { getRemindersFromApi })(RemindersList);

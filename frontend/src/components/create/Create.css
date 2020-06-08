@@ -1,12 +1,11 @@
 .create {
-  width: 80%;
-  background-color: dimgrey;
-  color: dimgrey;
+  border: none;
 }
 
-.create:hover {
-  margin-top: -5%;
-  width: 100%;
+.create-btn {
+  width: 100px;
+  height: 62px;
+  background-color: mediumseagreen;
 }
 
 .description {
@@ -22,7 +21,6 @@
   display: flex;
 }
 
-.ant-input {
-  color: mediumseagreen;
-  font-size: 25px;
+.textarea {
+  -webkit-appearance: button !important;
 }
