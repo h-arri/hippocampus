@@ -1,10 +1,13 @@
-import { Button, Card, DatePicker, Input, Modal, Typography } from "antd";
+import { Button, Card, DatePicker, Input, Modal, Typography, Form, Spin, message } from "antd";
 import moment from "moment";
 import React from "react";
+import { createReminderFromApi } from "../../store/actions/reminder";
 import "./Create.css";
+import { connect } from "react-redux";
+import store from '../../store';
+import { LoadingOutlined } from '@ant-design/icons';
 
-
-export default class Create extends React.Component {
+class Create extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
@@ -13,16 +16,15 @@ export default class Create extends React.Component {
       description: "Description",
       extra: "Extra notes?",
       remind_at: "",
-      created_at: new Intl.DateTimeFormat("de-DE", {
-        year: "numeric",
-        month: "numeric",
-        day: "numeric",
-        hour: "numeric",
-        minute: "numeric",
-        second: "numeric",
-        hour12: false
-      }).format(Date.now()),
-      editMode: false
+      created_at: moment().format('YYYY-MM-DD hh:mm:ss')
+    }
+  }
+
+  componentDidUpdate() {
+    const { reminder } = store.getState();
+    const created = Object.entries(reminder.reminder).length !== 0 && reminder.error === null;
+    if (created) {
+      message.success('Reminder created successfully!');
     }
   }
 
@@ -43,15 +45,22 @@ export default class Create extends React.Component {
   };
 
   handleDateChange = e => {
-    this.setState({ remind_at: e.toString() });
+    this.setState({ remind_at: moment(e.toISOString()).format('YYYY-MM-DD hh:mm:ss') });
   };
 
-  handleClick = e => {
-    console.log("eeee ", e);
+  handleCreate = e => {
+    const { description, extra, remind_at, created_at } = this.state;
+    this.props.createReminderFromApi({
+      description, extra, remind_at, created_at
+    });
+    this.setState({ open: false });
   };
 
   render() {
     const { open } = this.state;
+    const { reminder } = store.getState();
+    const creating = reminder ? reminder.loading : false;
+
     return (
       <>
         <Button type="primary" size="large" className="create-btn"
@@ -63,53 +72,38 @@ export default class Create extends React.Component {
           centered
           visible={open}
           className="create"
-          footer={null}
+          okText="Create"
+          onOk={this.handleCreate}
+          onCancel={this.handleClose}
+          cancelButtonProps={{danger: true}}
+          confirmLoading={creating}
         >
-          <Card
-            title={
-              <Input
-                placeholder="Description"
-                size="large"
-                onChange={this.handleDescChange}
-              />
-            }
-            className="create"
-            cover={
+          <Form name="reminder" layout={{ labelCol: { span: 4 }, wrapperCol: { span: 14 } }}>
+            <Form.Item name="desc" rules={[{ required: true }]}><Input placeholder="Description" size="large"
+              onChange={this.handleDescChange} /></Form.Item>
+            <Form.Item name="when">
               <DatePicker
                 bordered={false}
                 format="DD.MM.YYYY HH:mm"
                 showTime={{ defaultValue: moment("00:00:00", "HH:mm:ss") }}
-                size=""
+                size="large"
                 onOk={this.handleDateChange}
               />
-            }
-            actions={[
-              <Button
-                size="large"
-                className="cancel"
-                onClick={this.handleClose}
-              >
-                Cancel
-              </Button>,
-              <Button
-                size="large"
-                onClick={this.handleClick}
-              >
-                Remind
-              </Button>
-            ]}
-          >
-            <Card.Meta
-              title={
-                <Input.TextArea
-                  placeholder="Extra notes?"
-                  onChange={this.handleExtraChange}
-                />
-              }
-            />
-          </Card>
+              </Form.Item>
+            <Form.Item name="extra">
+              <Input.TextArea placeholder="Any tips?"></Input.TextArea>
+            </Form.Item>
+          </Form>
         </Modal>
       </>
     );
   }
 }
+
+const mapStateToProps = state => {
+  return {
+    creating: state.reminder.loading
+  };
+}
+
+export default connect(mapStateToProps, { createReminderFromApi })(Create);

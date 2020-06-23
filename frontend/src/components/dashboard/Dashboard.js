@@ -5,19 +5,16 @@ import RemindersList from "../reminders-list/RemindersList";
 import "./Dashboard.css";
 
 
-class Dashboard extends Component {
+const Dashboard = () => {
 
-  render() {
-
-    return (<Layout className="container">
-      <Layout.Header className="header">
-        <Create />
-      </Layout.Header>
-      <Layout.Content>
-        <RemindersList />
-      </Layout.Content>
-    </Layout>);
-  }
+  return (<Layout className="container">
+    <Layout.Header className="header">
+      <Create />
+    </Layout.Header>
+    <Layout.Content>
+      <RemindersList />
+    </Layout.Content>
+  </Layout>);
 }
 
 export default Dashboard;

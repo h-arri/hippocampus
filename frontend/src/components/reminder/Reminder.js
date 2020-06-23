@@ -1,70 +1,37 @@
 import "./Reminder.css";
 
-import { Card, Statistic, Tooltip } from "antd";
-import {
-  NotificationFilled,
-  EllipsisOutlined,
-  LikeFilled,
-  UserOutlined
-} from "@ant-design/icons";
+import { Card, Statistic, Button, Popconfirm } from "antd";
 import React from "react";
 
-export default class Reminder extends React.Component {
-  constructor(props) {
-    super(props);
-    this.state = {
-      reminder: props.reminder
-    };
-  }
+const Reminder = (props) => {
+  const {
+    reminder: { description, extra, remind_at, byWho, forWho, created_at }
+  } = props;
+  const counter = new Date(remind_at).getTime();
 
-  render() {
-    const {
-      reminder: { description, extra, remind_at, byWho, forWho, created_at }
-    } = this.state;
-    const counter = new Date(remind_at).getTime();
-
-    return (
-      <Card
-        title={description}
-        className="reminder"
-        actions={[
-          <LikeFilled key="setting" />,
-          <NotificationFilled key="edit" />,
-          <EllipsisOutlined key="ellipsis" />
-        ]}
-        hoverable
-        cover={
-          <Statistic.Countdown
-            title="in"
-            className="counter"
-            value={counter}
-            format="HH:mm:ss"
-          />
-        }
-      >
-        <Card.Meta title={extra} />
-        <div className="meta-wrapper">
-          <div className="meta-desc">
-            <Tooltip title={forWho} placement="left" ararrowPointAtCenterrow>
-              <UserOutlined className="meta-desc-icon" />
-            </Tooltip>
-            <span>
-              {new Intl.DateTimeFormat("de-DE", {
-                year: "numeric",
-                month: "numeric",
-                day: "numeric",
-                hour: "numeric",
-                minute: "numeric",
-                second: "numeric",
-                hour12: false
-              }).format(new Date(created_at))}
-            </span>
-          </div>
-          <Tooltip title={forWho} placement="right">
-            <UserOutlined />
-          </Tooltip>
-        </div>
-      </Card>
-    );
-  }
+  return (
+    <Card
+      title={<Statistic.Countdown
+        title="in"
+        className="counter"
+        value={counter}
+        format="HH:mm:ss"
+      />}
+      className="reminder"
+      actions={[
+        <Popconfirm title="Are you sure?" okText="Yes" cancelText="No" cancelButtonProps={{ danger: true }}>
+          <Button danger className="button">Delete</Button>
+        </Popconfirm>,
+        <Button className="button">Done</Button>
+      ]}
+      hoverable
+      cover={
+        description
+      }
+    >
+      <Card.Meta title={extra} />
+    </Card>
+  );
 }
+
+export default Reminder;

@@ -4,7 +4,7 @@
   padding-bottom: 10px;
 }
 
-.ant-col-6 {
+.ant-card-actions- .ant-col-6 {
   flex: 0 0 20%;
 }
 
@@ -12,38 +12,15 @@
   margin: 11px 11px 0 0;
 }
 
-.ant-card-head {
-  font-size: 25px;
-}
-
 .anticon,
 .ant-card-actions>li>span>.anticon {
   font-size: 30px;
 }
 
-.meta-desc {
-  display: flex;
-  flex-direction: column;
-  justify-content: flex-start;
-}
-
-.meta-desc-icon {
-  width: 9%;
-  font-size: 20px;
-}
-
-.meta-wrapper {
-  display: flex;
-  justify-content: space-between;
-  margin-top: 30px;
-}
-
-.ant-card-head-title {
-  display: flex;
-}
-
 .ant-card-head {
   border-color: rgba(0, 0, 0, 0.65);
+  font-size: 25px;
+  border: none;
 }
 
 .ant-typography-edit-content {
@@ -70,7 +47,8 @@
 }
 
 .ant-card-cover {
-  padding: 5% 2% 0 0;
+  padding: 24px;
+  font-size: 25px;
 }
 
 .ant-card-actions>li>span {
@@ -82,12 +60,17 @@
   color: rgba(0, 0, 0, 0.65);
 }
 
+.ant-card-actions>li:not(:last-child) {
+  border: none;
+
+}
+
 .ant-picker-dropdown {
+  top: 295px !important;
   left: 770px !important;
 }
 
 .ant-btn {
-  background: none;
   border: none;
 }
 
@@ -95,7 +78,6 @@
 .ant-btn:hover {
   background: seagreen;
   border-color: seagreen;
-  color: rgba(0, 0, 0, 0.65);
 }
 
 .ant-input,
@@ -154,17 +136,12 @@ div.ant-typography-edit-content {
 }
 
 .ant-card {
+  height: 317px;
   border-radius: 2%;
 }
 
 .ant-col-6 {
   margin: 1%;
-}
-
-.ant-btn-sm,
-.ant-btn:disabled .ant-btn:disabled:hover {
-  background: seagreen !important;
-  color: white;
 }
 
 .ant-picker-now-btn {
@@ -173,6 +150,10 @@ div.ant-typography-edit-content {
 
 .ant-picker-input>input {
   color: mediumseagreen;
+}
+
+.ant-picker-ok>.ant-btn {
+  background: seagreen;
 }
 
 .ant-modal,
@@ -184,19 +165,75 @@ div.ant-typography-edit-content {
   border-radius: 10px;
 }
 
+.ant-modal-footer>button {
+  font-size: 20px;
+  height: 100%;
+}
+
+.ant-modal-footer>.ant-btn-primary {
+  background: mediumseagreen;
+  color: white;
+}
+
+.ant-modal-footer>.ant-btn-primary:hover {
+  background: seagreen;
+}
+
+.ant-modal-footer>.ant-btn-dangerous:hover {
+  background: #ff4d4f;
+  color: white;
+}
+
 .ant-picker-time-panel-column>li.ant-picker-time-panel-cell-selected>.ant-picker-time-panel-cell-inner {
   background: seagreen;
 }
 
-.ant-input {
+.ant-picker.ant-picker-borderless {
+  width: 100%;
+}
+
+.ant-input,
+.ant-picker-input {
   font-size: 25px;
   color: seagreen;
+}
+
+.ant-picker-large .ant-picker-input>input {
+  text-align: left;
+  font-size: 25px;
 }
 
 .ant-input:placeholder-shown {
   color: seagreen;
 }
 
-.ant-modal-content {
-  background: none;
+.ant-form-item-label>label {
+  font-size: 22px;
+}
+
+.ant-form-item {
+  align-items: center;
+  padding: 11px 30px;
+  margin-bottom: 0;
+}
+
+.anticon-loading {
+  color: seagreen;
+}
+
+.ant-popover-buttons>.ant-btn-primary {
+  background: mediumseagreen;
+}
+
+.ant-popover-buttons>.ant-btn-primary:hover {
+  background: seagreen;
+}
+
+.ant-popover-buttons>.ant-btn-dangerous {
+  color: #ff4d4f;
+}
+
+.ant-popover-buttons>.ant-btn-dangerous:hover {
+  background: #ff4d4f;
+  color: white;
 }

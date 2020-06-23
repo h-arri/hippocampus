@@ -3,10 +3,9 @@
   background-color: mediumseagreen;
 }
 
-/* .reminder:hover {
-  margin-top: -5%;
-  width: 100%;
-} */
+.reminder > div.ant-card-cover {
+  height: 125px;
+}
 
 .reminder > div,
 .counter {
@@ -16,5 +15,13 @@
 .counter {
   display: flex;
   justify-content: flex-end;
-  padding-right: 4%;
+}
+
+.button.ant-btn:hover {
+  color: white;
+  background: seagreen;
+}
+
+.button.ant-btn-dangerous:hover {
+  background: #ff4d4f;
 }

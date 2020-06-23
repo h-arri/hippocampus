@@ -4,8 +4,10 @@
 
 .container {
   padding: 2%;
+  margin: 2%;
   font-family: monospace;
   overflow: hidden;
+  background: none;
 }
 
 .header {
@@ -15,4 +17,8 @@
   padding: 2% 10% 0;
   background: none;
   height: 130px;
+}
+
+.create-btn>h1 {
+  color: white;
 }

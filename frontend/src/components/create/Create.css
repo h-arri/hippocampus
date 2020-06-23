@@ -5,7 +5,10 @@
 .create-btn {
   width: 100px;
   height: 62px;
-  background-color: mediumseagreen;
+}
+
+.ant-btn.create-btn {
+  background: mediumseagreen;
 }
 
 .description {
@@ -23,4 +26,9 @@
 
 .textarea {
   -webkit-appearance: button !important;
+}
+
+.cancel-button {
+  background: #ff4d4f;
+  color: white;
 }
