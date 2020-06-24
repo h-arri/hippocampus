@@ -11,14 +11,19 @@
 }
 
 .header {
-  display: flex;
-  flex-direction: row;
-  justify-content: center;
-  padding: 2% 10% 0;
+  padding: 2% 7% 0;
   background: none;
   height: 130px;
 }
 
 .create-btn>h1 {
   color: white;
+}
+
+.header>* {
+  height: 62px;
+}
+
+.header>input {
+  width: 250px;
 }

@@ -1,14 +1,14 @@
 import { Col, Row, Skeleton } from "antd";
 import React, { Component } from "react";
 import { connect } from "react-redux";
-import { getRemindersFromApi } from "../../store/actions/reminders";
+import { getRemindersApi } from "../../store/actions/reminders";
 import Reminder from "../reminder/Reminder";
 import "./RemindersList.css";
 
 class RemindersList extends Component {
 
   componentDidMount() {
-    this.props.getRemindersFromApi();
+    this.props.getRemindersApi();
   }
 
   render() {
@@ -35,4 +35,4 @@ const mapStateToProps = state => {
   };
 };
 
-export default connect(mapStateToProps, { getRemindersFromApi })(RemindersList);
+export default connect(mapStateToProps, { getRemindersApi })(RemindersList);

@@ -1,7 +1,7 @@
 import { Button, Card, DatePicker, Input, Modal, Typography, Form, Spin, message } from "antd";
 import moment from "moment";
 import React from "react";
-import { createReminderFromApi } from "../../store/actions/reminder";
+import { createReminderApi } from "../../store/actions/reminder";
 import "./Create.css";
 import { connect } from "react-redux";
 import store from '../../store';
@@ -50,7 +50,7 @@ class Create extends React.Component {
 
   handleCreate = e => {
     const { description, extra, remind_at, created_at } = this.state;
-    this.props.createReminderFromApi({
+    this.props.createReminderApi({
       description, extra, remind_at, created_at
     });
     this.setState({ open: false });
@@ -106,4 +106,4 @@ const mapStateToProps = state => {
   };
 }
 
-export default connect(mapStateToProps, { createReminderFromApi })(Create);
+export default connect(mapStateToProps, { createReminderApi })(Create);

@@ -16,7 +16,7 @@ export const createReminderFailure = error => ({
     error
 });
 
-export function createReminderFromApi(reminder) {
+export function createReminderApi(reminder) {
     return dispatch => {
         dispatch(createReminder());
         return axios
