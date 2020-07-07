@@ -1,5 +1,5 @@
-import React, { useState, useEffect } from "react";
-import { Input, Checkbox, Select, Row, Col, Space } from "antd";
+import React, { useState } from "react";
+import { Input, Checkbox, Row, Col } from "antd";
 
 const FilterTab = () => {
     const options = ["All", "Active", "Done", "Deleted"];
@@ -13,14 +13,7 @@ const FilterTab = () => {
                 <Input size="large" placeholder="Search..." />
             </Col>
             <Col span={8}>
-                <Checkbox.Group options={options} defaultValue={["All"]} onChange={handleShowChange} />
-            </Col>
-            <Col span={4}>
-                <Select mode="multiple" placeholder="Who?" defaultValue={["You (Hari)"]}>
-                    <Select.Option key="you">You (Hari)</Select.Option>
-                    <Select.Option key="you">Fabi</Select.Option>
-                    <Select.Option key="you">Marko</Select.Option>
-                </Select>
+                <Checkbox.Group options={options} defaultValue={show} onChange={handleShowChange} />
             </Col>
         </Row>
     );

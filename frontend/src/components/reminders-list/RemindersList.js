@@ -1,38 +1,32 @@
 import { Col, Row, Skeleton } from "antd";
-import React, { Component } from "react";
-import { connect } from "react-redux";
+import React, { useEffect } from "react";
+import { connect, useDispatch } from "react-redux";
 import { getRemindersApi } from "../../store/actions/reminders";
 import Reminder from "../reminder/Reminder";
 import "./RemindersList.css";
 
-class RemindersList extends Component {
+const RemindersList = ({ reminders, loading }) => {
+  const dispatch = useDispatch();
+  useEffect(() => {
+    (async function fetchReminders() { await dispatch(getRemindersApi()); })();
+  }, []);
 
-  componentDidMount() {
-    this.props.getRemindersApi();
-  }
-
-  render() {
-    const { loading } = this.props.loading;
-
-    return (
-      <Skeleton active loading={loading}>
-        <Row gutter={[8, 32]} className="grid">
-          {this.props.reminders.map(reminder => (
-            <Col key={reminder.id} className="col" span={5}>
-              <Reminder reminder={reminder} />
-            </Col>
-          ))}
-        </Row>
-      </Skeleton>
-    );
-  }
-}
-
-const mapStateToProps = state => {
-  return {
-    reminders: Object.values(state.reminders.reminders),
-    loading: state.reminders.loading
-  };
+  return (
+    <Skeleton active loading={loading}>
+      <Row gutter={[8, 32]} className="grid">
+        {reminders.map(reminder => (
+          <Col key={reminder.id} className="col" span={5}>
+            <Reminder reminder={reminder} />
+          </Col>
+        ))}
+      </Row>
+    </Skeleton>
+  );
 };
 
-export default connect(mapStateToProps, { getRemindersApi })(RemindersList);
+const mapStateToProps = state => ({
+  reminders: Object.values(state.reminders.reminders),
+  loading: state.reminders.loading
+});
+
+export default connect(mapStateToProps)(RemindersList);

@@ -1,9 +1,14 @@
 .reminder {
-  width: 80%;
   background-color: mediumseagreen;
 }
 
-.reminder > div.ant-card-cover {
+.reminder,
+.done {
+  width: 80%;
+}
+
+.reminder > div.ant-card-cover,
+.done > div.ant-card-cover {
   height: 125px;
 }
 
@@ -17,11 +22,17 @@
   justify-content: flex-end;
 }
 
-.button.ant-btn:hover {
+.button.ant-btn:hover,
+.button.ant-btn:focus {
   color: white;
   background: seagreen;
 }
 
 .button.ant-btn-dangerous:hover {
   background: #ff4d4f;
+}
+
+.done {
+  background-color: darkgreen;
+  opacity: 0.6;
 }

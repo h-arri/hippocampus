@@ -1,11 +1,11 @@
-import { Button, Card, DatePicker, Input, Modal, Typography, Form, Spin, message } from "antd";
+import { Button, DatePicker, Input, Modal, Typography, Form, message } from "antd";
 import moment from "moment";
 import React from "react";
 import { createReminderApi } from "../../store/actions/reminder";
+import { getRemindersApi } from "../../store/actions/reminders";
 import "./Create.css";
 import { connect } from "react-redux";
 import store from '../../store';
-import { LoadingOutlined } from '@ant-design/icons';
 
 class Create extends React.Component {
   constructor(props) {
@@ -15,8 +15,8 @@ class Create extends React.Component {
       id: 999999,
       description: "Description",
       extra: "Extra notes?",
-      remind_at: "",
-      created_at: moment().format('YYYY-MM-DD hh:mm:ss')
+      remindAt: "",
+      createdAt: moment().format('YYYY-MM-DD hh:mm:ss')
     }
   }
 
@@ -25,6 +25,7 @@ class Create extends React.Component {
     const created = Object.entries(reminder.reminder).length !== 0 && reminder.error === null;
     if (created) {
       message.success('Reminder created successfully!');
+      this.props.getRemindersApi();
     }
   }
 
@@ -45,13 +46,13 @@ class Create extends React.Component {
   };
 
   handleDateChange = e => {
-    this.setState({ remind_at: moment(e.toISOString()).format('YYYY-MM-DD hh:mm:ss') });
+    this.setState({ remindAt: moment(e.toISOString()).format('YYYY-MM-DD hh:mm:ss') });
   };
 
   handleCreate = e => {
-    const { description, extra, remind_at, created_at } = this.state;
+    const { description, extra, remindAt, createdAt } = this.state;
     this.props.createReminderApi({
-      description, extra, remind_at, created_at
+      description, extra, remindAt, createdAt
     });
     this.setState({ open: false });
   };
@@ -75,7 +76,7 @@ class Create extends React.Component {
           okText="Create"
           onOk={this.handleCreate}
           onCancel={this.handleClose}
-          cancelButtonProps={{danger: true}}
+          cancelButtonProps={{ danger: true }}
           confirmLoading={creating}
         >
           <Form name="reminder" layout={{ labelCol: { span: 4 }, wrapperCol: { span: 14 } }}>
@@ -89,9 +90,9 @@ class Create extends React.Component {
                 size="large"
                 onOk={this.handleDateChange}
               />
-              </Form.Item>
+            </Form.Item>
             <Form.Item name="extra">
-              <Input.TextArea placeholder="Any tips?"></Input.TextArea>
+              <Input.TextArea placeholder="Any tips?" onChange={this.handleExtraChange}></Input.TextArea>
             </Form.Item>
           </Form>
         </Modal>
@@ -106,4 +107,4 @@ const mapStateToProps = state => {
   };
 }
 
-export default connect(mapStateToProps, { createReminderApi })(Create);
+export default connect(mapStateToProps, { createReminderApi, getRemindersApi })(Create);
