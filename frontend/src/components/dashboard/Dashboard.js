@@ -1,5 +1,5 @@
 import { Layout, Row, Col } from 'antd';
-import React, { Component } from "react";
+import React from "react";
 import Create from "../create/Create";
 import RemindersList from "../reminders-list/RemindersList";
 import "./Dashboard.css";
@@ -15,7 +15,7 @@ const Dashboard = () => {
           <Create />
         </Col>
         <Col span={20}>
-          <FilterBar />
+          <FilterBar className="filter" />
         </Col>
       </Row>
     </Layout.Header>

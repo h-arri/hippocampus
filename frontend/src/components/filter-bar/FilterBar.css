@@ -1,10 +1,7 @@
-.filter-tab {
-  height: 130px;
-  display: flex;
-  flex-direction: row;
-  justify-content: center;
+.filter {
+  justify-content: flex-end;
 }
 
-.filter-tab>div {
+.filter>div {
   padding-right: 20px;
 }
