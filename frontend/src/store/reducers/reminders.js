@@ -1,11 +1,15 @@
 import {
   GET_REMINDERS,
   GET_REMINDERS_FAILURE,
-  GET_REMINDERS_SUCCESS
+  GET_REMINDERS_SUCCESS,
+  FILTER_REMINDERS,
+  SEARCH_REMINDERS
 } from "../types";
+import { filterByShow, search } from "../../utils";
 
 const initialState = {
   reminders: [],
+  filtered: [],
   loading: false,
   error: null
 };
@@ -23,7 +27,8 @@ export default (state = initialState, action) => {
       return {
         ...state,
         loading: false,
-        reminders: action.reminders
+        reminders: action.reminders,
+        filtered: action.reminders
       };
 
     case GET_REMINDERS_FAILURE:
@@ -31,7 +36,18 @@ export default (state = initialState, action) => {
         ...state,
         loading: false,
         error: action.error,
-        reminders: []
+        reminders: [],
+        filtered: []
+      };
+    case FILTER_REMINDERS:
+      return {
+        ...state,
+        filtered: filterByShow(state.reminders, action.filter)
+      };
+    case SEARCH_REMINDERS:
+      return {
+        ...state,
+        filtered: search(state.reminders, action.searchText)
       };
     default:
       return state;

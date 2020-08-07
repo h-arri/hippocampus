@@ -1,5 +1,5 @@
 import axios from "axios";
-import { GET_REMINDERS, GET_REMINDERS_FAILURE, GET_REMINDERS_SUCCESS } from "../types";
+import { GET_REMINDERS, GET_REMINDERS_FAILURE, GET_REMINDERS_SUCCESS , FILTER_REMINDERS, SEARCH_REMINDERS} from "../types";
 
 
 export const getReminders = () => ({
@@ -35,3 +35,13 @@ export function getRemindersApi() {
       });
   };
 }
+
+export const filterReminders = filter => ({
+  type: FILTER_REMINDERS,
+  filter
+});
+
+export const searchReminders = searchText => ({
+  type: SEARCH_REMINDERS,
+  searchText
+});
