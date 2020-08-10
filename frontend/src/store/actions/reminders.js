@@ -1,5 +1,5 @@
 import axios from "axios";
-import { GET_REMINDERS, GET_REMINDERS_FAILURE, GET_REMINDERS_SUCCESS, FILTER_REMINDERS } from "../types";
+import { GET_REMINDERS, GET_REMINDERS_FAILURE, GET_REMINDERS_SUCCESS, FILTER_REMINDERS, UPDATE_FILTERED } from "../types";
 
 export const getReminders = () => ({
   type: GET_REMINDERS
@@ -44,4 +44,9 @@ export function getRemindersApi() {
 export const filterReminders = filter => ({
   type: FILTER_REMINDERS,
   filter
+});
+
+export const updateFiltered = data => ({
+  type: UPDATE_FILTERED,
+  data
 });

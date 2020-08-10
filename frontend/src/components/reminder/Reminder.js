@@ -8,11 +8,9 @@ import moment from "moment";
 const Reminder = (props) => {
   const { reminder } = props;
   const counter = new Date(reminder.remindAt).getTime();
-  const [done, setDone] = useState(reminder.isDone);
   const dispatch = useDispatch();
 
   const handleDone = () => {
-    setDone(true);
     dispatch(updateReminderApi({
       ...reminder,
       isDone: true,
@@ -32,7 +30,7 @@ const Reminder = (props) => {
         value={counter}
         format="HH:mm:ss"
       />}
-      className={done ? "done" : "reminder"}
+      className={reminder.isDone ? "done" : "reminder"}
       actions={[
         <Popconfirm title="Are you sure?" okText="Yes" cancelText="No"
           cancelButtonProps={{ danger: true }} onConfirm={handleDelete}>

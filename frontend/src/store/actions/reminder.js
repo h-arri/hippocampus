@@ -10,7 +10,7 @@ import {
     UPDATE_REMINDER_SUCCESS,
     UPDATE_REMINDER_FAILURE
 } from "../types";
-import { getRemindersApi } from './reminders';
+import { updateFiltered } from './reminders';
 
 
 export const createReminder = () => ({
@@ -72,7 +72,7 @@ export function deleteReminderApi(id) {
                     type: DELETE_REMINDER_SUCCESS,
                     reminder: data === '' ? {} : data
                 });
-                dispatch(getRemindersApi());
+                dispatch(updateFiltered({ id }));
             })
             .catch(({ error }) => {
                 dispatch({
@@ -108,6 +108,7 @@ export function updateReminderApi(reminder) {
                     type: UPDATE_REMINDER_SUCCESS,
                     reminder: data
                 });
+                dispatch(updateFiltered({ reminder: data }));
             })
             .catch(({ error }) => {
                 dispatch({

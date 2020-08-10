@@ -2,9 +2,10 @@ import {
   GET_REMINDERS,
   GET_REMINDERS_FAILURE,
   GET_REMINDERS_SUCCESS,
-  FILTER_REMINDERS
+  FILTER_REMINDERS,
+  UPDATE_FILTERED
 } from "../types";
-import { filter } from "../../utils";
+import { filterReminders, update } from "../../utils";
 
 const initialState = {
   reminders: [],
@@ -39,8 +40,14 @@ export default (state = initialState, action) => {
     case FILTER_REMINDERS:
       return {
         ...state,
-        filtered: filter(state.reminders, action.filter)
+        filtered: filterReminders(state.reminders, action.filter)
       };
+    case UPDATE_FILTERED:
+      return {
+        ...state,
+        reminders: update(state.reminders, action.data),
+        filtered: update(state.filtered, action.data)
+      }
     default:
       return state;
   }
