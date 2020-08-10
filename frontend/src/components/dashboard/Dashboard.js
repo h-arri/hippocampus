@@ -20,10 +20,10 @@ const Dashboard = () => {
   return (<Layout className="container">
     <Layout.Header className="header">
       <Row>
-        <Col span={4}>
+        <Col span={2}>
           <Create />
         </Col>
-        <Col span={20}>
+        <Col span={22}>
           <FilterBar className="filter" />
         </Col>
       </Row>

@@ -1,110 +1,88 @@
-import { Button, DatePicker, Input, Modal, Typography, Form, message } from "antd";
+import { getRemindersApi } from '../../store/actions/reminders';
+import { Button, Typography, Modal, Form, Input, DatePicker, message } from 'antd';
 import moment from "moment";
-import React from "react";
-import { createReminderApi } from "../../store/actions/reminder";
-import { getRemindersApi } from "../../store/actions/reminders";
+import { useDispatch, useSelector } from 'react-redux';
+import React, { useEffect, useState } from "react";
+import { createReminderApi } from '../../store/actions/reminder';
 import "./Create.css";
-import { connect } from "react-redux";
-import store from '../../store';
 
-class Create extends React.Component {
-  constructor(props) {
-    super(props);
-    this.state = {
-      open: false,
-      id: 999999,
-      description: "Description",
-      extra: "Extra notes?",
-      remindAt: "",
-      createdAt: moment().format('YYYY-MM-DD hh:mm:ss')
-    }
-  }
+const Create = () => {
+    const dispatch = useDispatch();
+    const [form] = Form.useForm();
+    const [open, setOpen] = useState(false);
 
-  componentDidUpdate() {
-    const { reminder } = store.getState();
-    const created = Object.entries(reminder.reminder).length !== 0 && reminder.error === null;
-    if (created) {
-      message.success('Reminder created successfully!');
-      this.props.getRemindersApi();
-    }
-  }
+    const reminders = useSelector(state => state.reminders.reminders);
+    const reminder = useSelector(state => state.reminder.reminder);
+    const creating = useSelector(state => state.reminder.loading);
 
-  handleOpen = () => {
-    this.setState({ open: true });
-  }
+    useEffect(() => {
+        let mounted = true;
+        if (mounted && reminder.id && reminders.find(r => r.id === reminder.id) === undefined) {
+            message.success('Reminder created successfully!');
+            dispatch(getRemindersApi());
+        }
+        return () => { mounted = false };
+    }, [creating]);
 
-  handleClose = () => {
-    this.setState({ open: false });
-  }
+    const handleOpen = () => {
+        setOpen(true);
+    };
 
-  handleDescChange = e => {
-    this.setState({ description: e.target.value });
-  };
+    const handleClose = () => {
+        setOpen(false);
+    };
 
-  handleExtraChange = e => {
-    this.setState({ extra: e.target.value });
-  };
-
-  handleDateChange = e => {
-    this.setState({ remindAt: moment(e.toISOString()).format('YYYY-MM-DD hh:mm:ss') });
-  };
-
-  handleCreate = e => {
-    const { description, extra, remindAt, createdAt } = this.state;
-    this.props.createReminderApi({
-      description, extra, remindAt, createdAt
-    });
-    this.setState({ open: false });
-  };
-
-  render() {
-    const { open } = this.state;
-    const { reminder } = store.getState();
-    const creating = reminder ? reminder.loading : false;
+    const handleCreate = e => {
+        form.validateFields().then(values => {
+            form.resetFields();
+            dispatch(createReminderApi({
+                description: values.desc,
+                exrtra: values.extra,
+                remindAt: moment(values.when.toISOString()).format('YYYY-MM-DD hh:mm:ss'),
+                createdAt: moment().format('YYYY-MM-DD hh:mm:ss')
+            }));
+            setOpen(false);
+        });
+    };
 
     return (
-      <>
-        <Button type="primary" size="large" className="create-btn"
-          onClick={this.handleOpen}>
-          <Typography.Title>+</Typography.Title>
-        </Button>
-        <Modal
-          closable={false}
-          centered
-          visible={open}
-          className="create"
-          okText="Create"
-          onOk={this.handleCreate}
-          onCancel={this.handleClose}
-          cancelButtonProps={{ danger: true }}
-          confirmLoading={creating}
-        >
-          <Form name="reminder" layout={{ labelCol: { span: 4 }, wrapperCol: { span: 14 } }}>
-            <Form.Item name="desc" rules={[{ required: true }]}><Input placeholder="Description" size="large"
-              onChange={this.handleDescChange} /></Form.Item>
-            <Form.Item name="when">
-              <DatePicker
-                bordered={false}
-                format="DD.MM.YYYY HH:mm"
-                showTime={{ defaultValue: moment("00:00:00", "HH:mm:ss") }}
-                size="large"
-                onOk={this.handleDateChange}
-              />
-            </Form.Item>
-            <Form.Item name="extra">
-              <Input.TextArea placeholder="Any tips?" onChange={this.handleExtraChange}></Input.TextArea>
-            </Form.Item>
-          </Form>
-        </Modal>
-      </>
+        <>
+            <Button type="primary" size="large" className="create-btn"
+                onClick={handleOpen}>
+                <Typography.Title>+</Typography.Title>
+            </Button>
+            <Modal
+                closable={false}
+                centered
+                visible={open}
+                className="create"
+                okText="Create"
+                onOk={handleCreate}
+                onCancel={handleClose}
+                cancelButtonProps={{ danger: true }}
+                confirmLoading={creating}
+            >
+                <Form form={form} name="reminder" layout={{ labelCol: { span: 4 }, wrapperCol: { span: 14 } }}
+                    initialValues={{ remember: true }} onFinish={handleCreate} >
+                    <Form.Item name="desc"
+                        rules={[{ required: true, message: 'What you would like to do?' }]}>
+                        <Input placeholder="Description" size="large" /></Form.Item>
+                    <Form.Item name="when"
+                        rules={[{ required: true, message: 'When you would like to do?' }]}>
+                        <DatePicker
+                            bordered={false}
+                            format="DD.MM.YYYY HH:mm"
+                            showTime={{ defaultValue: moment("00:00:00", "HH:mm:ss") }}
+                            size="large"
+                        />
+                    </Form.Item>
+                    <Form.Item name="extra">
+                        <Input.TextArea placeholder="Any tips?" />
+                    </Form.Item>
+                </Form>
+            </Modal>
+        </>
     );
-  }
 }
 
-const mapStateToProps = state => {
-  return {
-    creating: state.reminder.loading
-  };
-}
-
-export default connect(mapStateToProps, { createReminderApi, getRemindersApi })(Create);
+export default Create;

@@ -2,14 +2,17 @@ import React, { useState } from "react";
 import { Input, Checkbox, Row, Col } from "antd";
 import "./FilterBar.css";
 import { useDispatch } from 'react-redux';
-import { FILTER_REMINDERS, SEARCH_REMINDERS } from '../../store/types';
+import { FILTER_REMINDERS } from '../../store/types';
 
-const FilterTab = (props) => {
+const FilterTab = () => {
     const dispatch = useDispatch();
 
     const options = ["All", "Active", "Done"];
     const [show, setShow] = useState(["Active"]);
-    let filter = "Active";
+    let filter = {
+        show: 'Active',
+        searchText: ""
+    };
 
     const handleShowChange = (e) => {
         const isChecked = e.length > show.length;
@@ -21,28 +24,23 @@ const FilterTab = (props) => {
         }
         if (current === "All" && isChecked) {
             setShow([...options]);
-            filter = "All";
+            filter.show = "All";
         } else if (current === "All" && !isChecked) {
             setShow([]);
-            filter = "";
+            filter.show = "";
         } else if (e.length === 2) {
             if (isChecked) {
                 setShow([...e, "All"]);
-                filter = "All";
+                filter.show = "All";
             } else {
                 setShow([...e.filter(selected => selected !== "All")]);
-                filter = e.filter(selected => selected !== "All")[0]
+                filter.show = e.filter(selected => selected !== "All")[0]
             }
         } else {
             setShow(e);
-            filter = e[0];
+            filter.show = e[0];
         }
 
-        handleFilterChange(filter);
-
-    };
-
-    const handleFilterChange = filter => {
         dispatch({
             type: FILTER_REMINDERS,
             filter
@@ -52,8 +50,11 @@ const FilterTab = (props) => {
     const handleSearch = (e) => {
         const searchText = e.target.value;
         dispatch({
-            type: SEARCH_REMINDERS,
-            searchText
+            type: FILTER_REMINDERS,
+            filter: {
+                ...filter,
+                searchText
+            }
         });
     };
 

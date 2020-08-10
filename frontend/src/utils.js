@@ -4,14 +4,17 @@ export const filterByShow = (reminders, show) => {
             return reminders.filter(reminder => reminder.isDone === false);
         case "Done":
             return reminders.filter(reminder => reminder.isDone);
-        case "All":
-            return reminders;
-        default:
+        case "":
             return [];
+        case "All":
+        default:
+            return reminders;
     }
 };
 
-export const search = (reminders, searchText) => {
-    return searchText ? reminders.filter(reminder =>
-        reminder.description.includes(searchText)) : reminders;
-}
+export const filter = (reminders, filter) => {
+    const { show, searchText } = filter;
+    const filtered = filterByShow(reminders, show);
+    return searchText ? filtered.filter(reminder =>
+        reminder.description.includes(searchText)) : filtered;
+};

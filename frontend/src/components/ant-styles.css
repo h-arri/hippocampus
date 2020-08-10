@@ -72,6 +72,7 @@
 
 .ant-btn {
   border: none;
+  border-radius: 5%;
 }
 
 .ant-btn:focus,

@@ -2,10 +2,9 @@ import {
   GET_REMINDERS,
   GET_REMINDERS_FAILURE,
   GET_REMINDERS_SUCCESS,
-  FILTER_REMINDERS,
-  SEARCH_REMINDERS
+  FILTER_REMINDERS
 } from "../types";
-import { filterByShow, search } from "../../utils";
+import { filter } from "../../utils";
 
 const initialState = {
   reminders: [],
@@ -22,7 +21,6 @@ export default (state = initialState, action) => {
         loading: true,
         error: null
       };
-
     case GET_REMINDERS_SUCCESS:
       return {
         ...state,
@@ -30,7 +28,6 @@ export default (state = initialState, action) => {
         reminders: action.reminders,
         filtered: action.reminders
       };
-
     case GET_REMINDERS_FAILURE:
       return {
         ...state,
@@ -42,12 +39,7 @@ export default (state = initialState, action) => {
     case FILTER_REMINDERS:
       return {
         ...state,
-        filtered: filterByShow(state.reminders, action.filter)
-      };
-    case SEARCH_REMINDERS:
-      return {
-        ...state,
-        filtered: search(state.reminders, action.searchText)
+        filtered: filter(state.reminders, action.filter)
       };
     default:
       return state;
