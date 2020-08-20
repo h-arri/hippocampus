@@ -22,6 +22,7 @@ const FilterTab = () => {
         } else {
             current = show.filter(selected => !e.includes(selected))[0];
         }
+        
         if (current === "All" && isChecked) {
             setShow([...options]);
             filter.show = "All";
@@ -61,10 +62,10 @@ const FilterTab = () => {
     return (
         <Row className="filter">
             <Col span={8}>
-                <Checkbox.Group options={options} value={show} onChange={e => handleShowChange(e)} />
+                <Checkbox.Group options={options} value={show} onChange={handleShowChange} />
             </Col>
             <Col span={8}>
-                <Input size="large" placeholder="Search..." onChange={e => handleSearch(e)} />
+                <Input size="large" placeholder="Search..." onChange={handleSearch} />
             </Col>
         </Row>
     );
