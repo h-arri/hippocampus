@@ -1,5 +1,5 @@
 .reminder {
-  background-color: mediumseagreen;
+  background-color: #e1ffff;
 }
 
 .reminder,
@@ -25,7 +25,7 @@
 .button.ant-btn:hover,
 .button.ant-btn:focus {
   color: white;
-  background: seagreen;
+  background: #0c6055;
 }
 
 .button.ant-btn-dangerous:hover {
@@ -33,7 +33,7 @@
 }
 
 .done {
-  background-color: darkgreen;
+  background-color: #0c6055;
   opacity: 0.6;
   cursor: not-allowed;
 }

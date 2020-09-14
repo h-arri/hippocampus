@@ -13,108 +13,92 @@ import {
 import { updateFiltered } from './reminders';
 
 
-export const createReminder = () => ({
+const createReminder = () => ({
     type: CREATE_REMINDER
 });
 
-export const createReminderSuccess = reminder => ({
+const createReminderSuccess = reminder => ({
     type: CREATE_REMINDER_SUCCESS,
     reminder
 });
 
-export const createReminderFailure = error => ({
+const createReminderFailure = error => ({
     type: CREATE_REMINDER_FAILURE,
     error
 });
 
-export function createReminderApi(reminder) {
+function createReminderApi(reminder) {
     return dispatch => {
         dispatch(createReminder());
         return axios
             .post("/api/reminders/", reminder)
             .then(({ data }) => {
-                dispatch({
-                    type: CREATE_REMINDER_SUCCESS,
-                    reminder: data
-                });
+                dispatch(createReminderSuccess(data));
             })
             .catch(({ error }) => {
-                dispatch({
-                    type: CREATE_REMINDER_FAILURE,
-                    error
-                });
+                dispatch(createReminderFailure(data));
             });
     };
 }
 
 
-export const deleteReminder = () => ({
+const deleteReminder = () => ({
     type: DELETE_REMINDER
 });
 
-export const deleteReminderSuccess = reminder => ({
+const deleteReminderSuccess = reminder => ({
     type: DELETE_REMINDER_SUCCESS,
     reminder
 });
 
-export const deleteReminderFailure = error => ({
+const deleteReminderFailure = error => ({
     type: DELETE_REMINDER_FAILURE,
     error
 });
 
-export function deleteReminderApi(id) {
+function deleteReminderApi(id) {
     return dispatch => {
         dispatch(deleteReminder());
         return axios
             .delete(`/api/reminders/${id}`)
             .then(({ data }) => {
-                dispatch({
-                    type: DELETE_REMINDER_SUCCESS,
-                    reminder: data === '' ? {} : data
-                });
+                dispatch(deleteReminderSuccess(data === '' ? {} : data));
                 dispatch(updateFiltered({ id }));
             })
             .catch(({ error }) => {
-                dispatch({
-                    type: DELETE_REMINDER_FAILURE,
-                    error
-                });
+                dispatch(deleteReminderFailure(error));
             });
     };
 }
 
 
-export const updateReminder = () => ({
+const updateReminder = () => ({
     type: UPDATE_REMINDER
 });
 
-export const updateReminderSuccess = reminder => ({
+const updateReminderSuccess = reminder => ({
     type: UPDATE_REMINDER_SUCCESS,
     reminder
 });
 
-export const updateReminderFailure = error => ({
+const updateReminderFailure = error => ({
     type: UPDATE_REMINDER_FAILURE,
     error
 });
 
-export function updateReminderApi(reminder) {
+function updateReminderApi(reminder) {
     return dispatch => {
         dispatch(updateReminder());
         return axios
             .put(`/api/reminders/${reminder.id}/`, reminder)
             .then(({ data }) => {
-                dispatch({
-                    type: UPDATE_REMINDER_SUCCESS,
-                    reminder: data
-                });
+                dispatch(updateReminderSuccess(data));
                 dispatch(updateFiltered({ reminder: data }));
             })
             .catch(({ error }) => {
-                dispatch({
-                    type: UPDATE_REMINDER_FAILURE,
-                    error
-                });
+                dispatch(updateReminderFailure(error));
             });
     };
 }
+
+export { createReminderApi, deleteReminderApi, updateReminderApi };

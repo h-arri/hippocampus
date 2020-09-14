@@ -4,3 +4,4 @@ db.sqlite3
 *.pyc
 .vscode/settings.json
 venv/
+.idea/*

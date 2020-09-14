@@ -16,14 +16,14 @@
   height: 130px;
 }
 
-.create-btn>h1 {
+.create-btn > h1 {
   color: white;
 }
 
-.header>* {
+.header > * {
   height: 62px;
 }
 
-.header>input {
+.header > input {
   width: 250px;
 }

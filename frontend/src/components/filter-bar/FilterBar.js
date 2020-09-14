@@ -1,74 +1,78 @@
 import React, { useState } from "react";
 import { Input, Checkbox, Row, Col } from "antd";
 import "./FilterBar.css";
-import { useDispatch } from 'react-redux';
-import { FILTER_REMINDERS } from '../../store/types';
+import { useDispatch, useSelector } from "react-redux";
+import { FILTER_REMINDERS } from "../../store/types";
+import { updateFilter } from "../../store/actions/filter";
+import { filterReminders } from "../../store/actions/reminders";
 
-const FilterTab = () => {
-    const dispatch = useDispatch();
+const FilterBar = (props) => {
+  const { show, searchText } = props.filter;
+  const dispatch = useDispatch();
 
-    const options = ["All", "Active", "Done"];
-    const [show, setShow] = useState(["Active"]);
-    let filter = {
-        show: 'Active',
-        searchText: ""
-    };
+  const options = ["All", "Active", "Done"];
+  let filter = {
+    show: ["Active"],
+    searchText,
+  };
 
-    const handleShowChange = (e) => {
-        const isChecked = e.length > show.length;
-        let current = "";
-        if (isChecked) {
-            current = e.filter(selected => !show.includes(selected))[0];
-        } else {
-            current = show.filter(selected => !e.includes(selected))[0];
-        }
-        
-        if (current === "All" && isChecked) {
-            setShow([...options]);
-            filter.show = "All";
-        } else if (current === "All" && !isChecked) {
-            setShow([]);
-            filter.show = "";
-        } else if (e.length === 2) {
-            if (isChecked) {
-                setShow([...e, "All"]);
-                filter.show = "All";
-            } else {
-                setShow([...e.filter(selected => selected !== "All")]);
-                filter.show = e.filter(selected => selected !== "All")[0]
-            }
-        } else {
-            setShow(e);
-            filter.show = e[0];
-        }
+  const handleShowChange = (e) => {
+    const isChecked = e.length > show.length;
+    let current = "";
+    if (isChecked) {
+      current = e.filter((selected) => !show.includes(selected))[0];
+    } else {
+      current = show.filter((selected) => !e.includes(selected))[0];
+    }
 
-        dispatch({
-            type: FILTER_REMINDERS,
-            filter
-        });
-    };
+    if (current === "All" && isChecked) {
+      filter.show = [...options];
+    } else if (current === "All" && !isChecked) {
+      filter.show = [];
+    } else if (e.length === 2) {
+      if (isChecked) {
+        filter.show = [...e, "All"];
+      } else {
+        filter.show = [...e.filter((selected) => selected !== "All")];
+      }
+    } else {
+      filter.show = e;
+    }
 
-    const handleSearch = (e) => {
-        const searchText = e.target.value;
-        dispatch({
-            type: FILTER_REMINDERS,
-            filter: {
-                ...filter,
-                searchText
-            }
-        });
-    };
+    dispatch(updateFilter(filter));
+    dispatch(filterReminders(filter));
+  };
 
-    return (
-        <Row className="filter">
-            <Col span={8}>
-                <Checkbox.Group options={options} value={show} onChange={handleShowChange} />
-            </Col>
-            <Col span={8}>
-                <Input size="large" placeholder="Search..." onChange={handleSearch} />
-            </Col>
-        </Row>
+  const handleSearch = (e) => {
+    const searchText = e.target.value;
+    dispatch(
+      updateFilter({
+        show,
+        searchText,
+      })
     );
+    dispatch(
+      filterReminders({
+        show,
+        searchText,
+      })
+    );
+  };
+
+  return (
+    <Row className="filter">
+      <Col span={8}>
+        <Checkbox.Group
+          options={options}
+          value={show}
+          onChange={handleShowChange}
+        />
+      </Col>
+      <Col span={8}>
+        <Input size="large" placeholder="Search..." onChange={handleSearch} />
+      </Col>
+    </Row>
+  );
 };
 
-export default FilterTab;
+export default FilterBar;

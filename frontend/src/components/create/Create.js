@@ -37,7 +37,7 @@ const Create = () => {
             form.resetFields();
             dispatch(createReminderApi({
                 description: values.desc,
-                exrtra: values.extra,
+                extra: values.extra,
                 remindAt: moment(values.when.toISOString()).format('YYYY-MM-DD hh:mm:ss'),
                 createdAt: moment().format('YYYY-MM-DD hh:mm:ss')
             }));
