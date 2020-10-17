@@ -1,29 +1,21 @@
 .menu {
-  margin: 1% 1%;
+    margin: 1% 1%;
 }
 
 .container {
-  padding: 0 2% 2%;
-  margin: 0 2% 2%;
-  font-family: monospace;
-  overflow: hidden;
-  background: none;
+    padding: 0 2% 2%;
+    margin: 0 2%;
+    font-family: monospace;
+    overflow: hidden;
+    background: none;
 }
 
 .header {
-  padding: 2% 7% 0;
-  background: none;
-  height: 130px;
-}
-
-.create-btn > h1 {
-  color: white;
-}
-
-.header > * {
-  height: 62px;
+    padding: 4% 7% 1%;
+    background: none;
+    height: 5rem;
 }
 
 .header > input {
-  width: 250px;
+    width: 250px;
 }

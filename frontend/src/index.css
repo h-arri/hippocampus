@@ -1,4 +1,10 @@
+html {
+    font-size: calc(1em + 1vw);
+}
+
 #app {
-  font-family: monospace;
-  background-color: #7bd8a4;
+    font-family: monospace;
+    background-color: #7bd8a4;
+    min-height: 100vh;
+    font-size: calc(1em + 1vw);
 }

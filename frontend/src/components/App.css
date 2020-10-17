@@ -1,35 +1,36 @@
 .hippo {
-  display: flex;
-  justify-content: center;
-  margin: 0 4%;
-  font-size: 95px !important;
-  z-index: 1;
-  animation: float 3s ease-out infinite;
+    display: flex;
+    justify-content: center;
+    margin: 0 4%;
+    font-size: 95px !important;
+    z-index: 1;
+    animation: float 3s ease-out infinite;
 }
 
 @keyframes float {
-  50% {
-    transform: translate(0, 20px);
-  }
+    50% {
+        transform: translate(0, 20px);
+    }
 }
 
 .page-header {
-  display: flex;
-  justify-content: center;
-  height: 130px;
-  padding-top: 1%;
+    display: flex;
+    justify-content: center;
+    height: 130px;
+    padding-top: 2%;
 }
 
 .title {
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
 }
 
 .title > h1 {
-  text-align: center;
-  color: #0c6055;
-  letter-spacing: 20px;
-  user-select: none;
+    text-align: center;
+    color: #0c6055;
+    letter-spacing: 1.5vw;
+    user-select: none;
+    font-size: 1.5em;
 }
 

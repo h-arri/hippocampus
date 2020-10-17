@@ -1,34 +1,43 @@
 .create {
-  border: none;
+    border: none;
 }
 
 .create-btn {
-  width: 100px;
-  height: 62px;
+    width: 10vw;
+    max-width: 90px;
+    height: 7vw;
+    max-height: 62px;
+}
+
+.create-btn > h1 {
+    color: white;
+    font-size: 4vw;
+    line-height: 0.6;
+    margin: 4%;
 }
 
 .ant-btn.create-btn {
-  background: #0c6055;
+    background: #0c6055;
 }
 
 .description {
-  display: flex;
-  justify-content: space-around;
+    display: flex;
+    justify-content: space-around;
 }
 
 .description:focus {
-  outline: none;
+    outline: none;
 }
 
 .cancel {
-  display: flex;
+    display: flex;
 }
 
 .textarea {
-  -webkit-appearance: button !important;
+    -webkit-appearance: button !important;
 }
 
 .cancel-button {
-  background: #ff4d4f;
-  color: white;
+    background: #ff4d4f;
+    color: white;
 }

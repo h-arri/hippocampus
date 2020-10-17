@@ -4,7 +4,7 @@ import reminder from "./reminder";
 import filter from "./filter";
 
 export default combineReducers({
-  reminders,
-  reminder,
-  filter
+    reminders,
+    reminder,
+    filter
 });

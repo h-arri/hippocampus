@@ -1,6 +1,6 @@
 # Hippocampus - A smart reminder [WIP]
 
-Being built using Pyhton Django, React, Redux.
+Being built using Python Django, React, Redux & Ant Design.
 
 ## Prerequisites
 
