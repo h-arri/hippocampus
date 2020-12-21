@@ -1,15 +1,15 @@
 .col {
-    display: flex;
-    justify-content: center;
+  display: flex;
+  justify-content: center;
 }
 
 .row {
-    justify-content: center;
+  justify-content: center;
 }
 
 .no-reminders {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    height: inherit;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: inherit;
 }

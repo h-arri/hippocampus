@@ -1,41 +1,52 @@
 .reminder {
-    background-color: #e1ffff;
+  background-color: #e1ffff;
 }
 
 .reminder:hover {
-    transform: translateY(-5px) scale(1.005) translateZ(0);
-    box-shadow: 0 24px 36px rgba(0, 0, 0, 0.11),
-    0 24px 46px #0c6055;
+  transform: translateY(-5px) scale(1.005) translateZ(0);
+  box-shadow: 0 24px 36px rgba(0, 0, 0, 0.11), 0 24px 46px #237673;
 }
 
 .reminder,
 .done {
-    width: 80%;
+  width: 80%;
 }
 
 .reminder > div.ant-card-cover,
 .done > div.ant-card-cover {
-    height: 125px;
+  height: 125px;
+}
+
+.reminder > div > div.ant-card-head-wrapper {
+  float: right;
 }
 
 .reminder > div,
 .counter {
-    color: rgba(0, 0, 0, 0.65);
+  color: #237673;
 }
 
 .counter {
-    display: flex;
-    justify-content: flex-end;
+  display: flex;
+  justify-content: flex-end;
+}
+
+.delete-button.ant-btn {
+  border: solid 1px #ff4d4f;
 }
 
 .delete-button.ant-btn:hover,
 .delete-button.ant-btn:focus {
-    background: #ff4d4f;
-    color: white;
+  background: #ff4d4f;
+  color: white;
+}
+
+.done-button.ant-btn {
+  border: solid 1px #237673;
 }
 
 .done {
-    background-color: #0c6055;
-    opacity: 0.6;
-    cursor: not-allowed;
+  background-color: #237673;
+  opacity: 0.6;
+  cursor: not-allowed;
 }
